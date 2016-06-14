@@ -27,4 +27,3 @@ class Line(object):
 
 new_line = Line((4,4),(1,0))
 
-print(new_line)
