@@ -1,20 +1,16 @@
 #Initializing the game board
-board = [["-","-","-"], ["-","-","-"], ["-","-","-"]]
+board = [["","",""], ["","",""], ["","",""]]
 # Initializing the players
 players = [{"name":"noname", "sign":"X"}, {"name":"noname", "sign":"O"}]
+
 
 
 def show_board():
 	'''
 		formats and displays the board with current moves on the board
 	'''
-	print("-The game board-\n")
-	for row in board:
-		row_display = ""
-		for pos in row:
-			row_display +=" " + pos
-		print(row_display)
-	print("---------------\n")	
+	for i in board:
+		print(i)
 
 
 def create_players():
@@ -31,16 +27,22 @@ def create_players():
 	print(" Player {p_name},  your sign is {p_sign}".format(p_name = players[1]["name"], p_sign = players[1]["sign"]))
 
 
-def get_move(sign):
-	player_move = str(input("Your move: (Use the number to indicate row and column)"))
+
+def get_move(player_index):
+	player_move = str(input("Your move %s: (Use the number to indicate row and column)" %(players[player_index]["name"])))
 	# Because we have coarsed player int input as string we can now use that as string and get both value as col and row
 	x = int(player_move[0])-1
 	y = int(player_move[1])-1
-	if board[x][y] == "-":
-		board[x][y] = sign 
+	if board[x][y] == "":
+		board[x][y] = players[player_index]["sign"] 
 	else:
-		get_move(sign)
-	return (x,y) 
+		print("Position already has an entry!")
+		get_move(player_index)
+	arr = []
+	arr.append(x)
+	arr.append(y)
+	return arr
+
 
 
 def check_game(arr):
@@ -52,39 +54,47 @@ def check_game(arr):
 	#getting the position from input array
 	x = arr[0]
 	y = arr[1]
-
 	#setting default check condition to false
 	check = False
-
-	# first let's check if given row meets the condition
-	if board[x][0] == board[x][1] and board[x][1] == board[x][2]:
-		# Second let's check if given Col meets the condition
-		if board[0][y] == board[1][y] and board[1][y] == board[2][y]:
-			check = True
-		else False
-	else False
-
-	if x == y or (x==0 and y==2) or (x==2 and y==0):
-		pass
-		
+	if board[x][0] == board[x][1] == board[x][2] != "":
+		check = True
+	elif board[0][y] == board[1][y] == board[2][y] != "":
+		check = True
+	elif board[0][0] == board[1][1] == board[2][2] !="" or board[0][2]==board[1][1]==board[2][0] !="":
+		check = True
+	
+	return check
 
 	
+def board_complete():
+	complete = True
+	for i in board:
+		for j in i:
+			if j == "":
+				complete = False
+	return complete
 
-	# Third we have to check the diagonal condition
-	return check
+
 
 def game():
 	create_players()
 	show_board()
-	check = false
 	num = 1
-	while not check:
-		pass
+	while True or board_complete:
+		player_index = num%2
+		done = check_game(get_move(player_index))
+		if done:
+			show_board()
+			print(players[player_index]["name"] + " won!!")
+			break
+		else:
+			show_board()
+			num += 1
 
 
 
 
-
+game()
 
 	
 		 
