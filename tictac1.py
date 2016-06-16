@@ -65,6 +65,7 @@ def check_game(arr):
 	else False
 
 	if x == y or (x==0 and y==2) or (x==2 and y==0):
+		pass
 		
 
 	
