@@ -10,7 +10,7 @@ Supervised learning is based on given data and it can be of two common types:
 
 The data provided to the algorithm in supervised learning is called training set
 
-Sample case is portland real estate prices where
+Regression Sample case is portland real estate prices where
  notations::
  	m = Number of training examples
  	x = "input" variable/feature ( in this case it is the size of property in sft)
@@ -28,4 +28,10 @@ Sample case is portland real estate prices where
  		although in mnay case linear function might not be ideal but to start with it is a simple case to consider
  		Univariate linear regression =  linear regerssion in one variable (here the area/size)
 	case2 (non-linear functions):
+
+Classification sample case:
+	to classify tumors as malignant or benign
+	we can have single, double or even infinite variable for classification
+	how to we deal with infinite variables?
+	turns out we can trick the machine with something termed as Support Vector Machine
 '''
