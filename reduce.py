@@ -35,5 +35,18 @@ stuff = [1,2,3,4,5]
 output_sum = functools.reduce(add, stuff)
 
 print(output_sum)
+#15
+
+
+# the largest number
+def find_max(a,b):
+	if a > b:
+		return a
+	else:
+		return b
+
+print(functools.reduce(find_max,[1,2,3,5,2,34,2,3,2]))
+
+
 
 
